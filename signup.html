@@ -1,671 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5-Day Lighthouse Mystery Challenge - Free Reading Adventure for Kids 6-7</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #e8f4f8 0%, #d4ebf2 100%);
-            color: #2c2c2c;
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #2c5f7c 0%, #5d9caa 100%);
-            color: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 50px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .hero h1 {
-            font-size: 3em;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero .subtitle {
-            font-size: 1.4em;
-            margin-bottom: 20px;
-            opacity: 0.95;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-
-        /* Hero Form */
-        .hero-form {
-            max-width: 500px;
-            margin: 40px auto 0;
-        }
-
-        .hero-form .form-group {
-            margin-bottom: 15px;
-        }
-
-        .hero-form input {
-            width: 100%;
-            padding: 18px 25px;
-            border-radius: 50px;
-            border: none;
-            font-size: 1.1em;
-            font-family: inherit;
-        }
-
-        .hero-form input:focus {
-            outline: 3px solid #81c784;
-        }
-
-        .hero-form .submit-button {
-            background: linear-gradient(135deg, #81c784, #66bb6a);
-            color: white;
-            padding: 20px 60px;
-            border-radius: 50px;
-            font-size: 1.4em;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(129, 199, 132, 0.4);
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .hero-form .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(129, 199, 132, 0.6);
-        }
-
-        .hero-form .privacy-note {
-            font-size: 0.9em;
-            margin-top: 15px;
-            opacity: 0.9;
-        }
-
-        .hero .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #81c784, #66bb6a);
-            color: white;
-            padding: 20px 50px;
-            border-radius: 50px;
-            font-size: 1.4em;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 8px 25px rgba(129, 199, 132, 0.4);
-            transition: all 0.3s;
-            margin-top: 20px;
-        }
-
-        .hero .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(129, 199, 132, 0.6);
-        }
-
-        /* Back to Day 1 Link */
-        .back-to-day1 {
-            background: #e8f5e9;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-            border: 2px solid #81c784;
-        }
-
-        .back-to-day1 p {
-            font-size: 1.2em;
-            color: #2c5f7c;
-            margin: 0;
-        }
-
-        .back-to-day1 a {
-            color: #5d9caa;
-            text-decoration: underline;
-            font-weight: 600;
-        }
-
-        /* Problem Section */
-        .problem-section {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .problem-section h2 {
-            font-size: 2.5em;
-            color: #2c5f7c;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 40px;
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .problem-card {
-            background: #f0f8fa;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #7eb3c4;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .problem-card h3 {
-            color: #2c5f7c;
-            font-size: 1.4em;
-            margin-bottom: 15px;
-        }
-
-        .problem-card p {
-            color: #4a4a4a;
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-
-        <!-- Solution Section -->
-        .solution-section {
-            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-        }
-
-        .solution-section h2 {
-            font-size: 2.5em;
-            color: #2c5f7c;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .solution-section .tagline {
-            text-align: center;
-            font-size: 1.3em;
-            color: #5d9caa;
-            margin-bottom: 40px;
-            font-style: italic;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            border-top: 5px solid #81c784;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .feature-card .icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            color: #2c5f7c;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            color: #4a4a4a;
-            font-size: 1.05em;
-            line-height: 1.7;
-        }
-
-        /* What's Inside */
-        .whats-inside {
-            background: linear-gradient(135deg, #f0f8fa 0%, #e8f4f8 100%);
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-        }
-
-        .whats-inside h2 {
-            font-size: 2.5em;
-            color: #2c5f7c;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .days-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .day-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            border: 3px solid #a8d5e2;
-            transition: all 0.3s;
-        }
-
-        .day-card:hover {
-            transform: translateY(-5px);
-            border-color: #5d9caa;
-            box-shadow: 0 8px 20px rgba(93, 156, 170, 0.2);
-        }
-
-        .day-card .day-number {
-            font-size: 2em;
-            font-weight: 700;
-            color: #5d9caa;
-            margin-bottom: 10px;
-        }
-
-        .day-card h3 {
-            color: #2c5f7c;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .day-card p {
-            color: #4a4a4a;
-            font-size: 0.95em;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .testimonials h2 {
-            font-size: 2.5em;
-            color: #2c5f7c;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .testimonial-card {
-            background: #f0f8fa;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #7eb3c4;
-        }
-
-        .testimonial-text {
-            font-size: 1.1em;
-            color: #2c2c2c;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: #5d9caa;
-        }
-
-        /* Sign Up Form */
-        .signup-section {
-            background: linear-gradient(135deg, #2c5f7c 0%, #5d9caa 100%);
-            color: white;
-            padding: 80px 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            margin-bottom: 40px;
-        }
-
-        .signup-section h2 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .signup-section p {
-            font-size: 1.3em;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-
-        .signup-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 18px 25px;
-            border-radius: 50px;
-            border: none;
-            font-size: 1.1em;
-            font-family: inherit;
-        }
-
-        .form-group input:focus {
-            outline: 3px solid #81c784;
-        }
-
-        .submit-button {
-            background: linear-gradient(135deg, #81c784, #66bb6a);
-            color: white;
-            padding: 20px 60px;
-            border-radius: 50px;
-            font-size: 1.5em;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(129, 199, 132, 0.4);
-            transition: all 0.3s;
-            width: 100%;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(129, 199, 132, 0.6);
-        }
-
-        .privacy-note {
-            font-size: 0.9em;
-            margin-top: 20px;
-            opacity: 0.8;
-        }
-
-        /* FAQ */
-        .faq {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .faq h2 {
-            font-size: 2.5em;
-            color: #2c5f7c;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .faq-item {
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-question {
-            font-size: 1.3em;
-            color: #2c5f7c;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .faq-answer {
-            font-size: 1.1em;
-            color: #4a4a4a;
-            line-height: 1.7;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2em;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2em;
-            }
-
-            .hero .cta-button {
-                font-size: 1.2em;
-                padding: 15px 35px;
-            }
-
-            .problem-section h2,
-            .solution-section h2,
-            .whats-inside h2,
-            .faq h2 {
-                font-size: 2em;
-            }
-
-            .signup-section h2 {
-                font-size: 2.2em;
-            }
-
-            .problem-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>5-Day Lighthouse Mystery Challenge - Free Reading Adventure for Kids 6-7</title>
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+ body {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+ background: linear-gradient(135deg, #e8f4f8 0%, #d4ebf2 100%);
+ color: #2c2c2c;
+ line-height: 1.7;
+ }
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+ }
+ /* Hero Section */
+ .hero {
+ background: linear-gradient(135deg, #2c5f7c 0%, #5d9caa 100%);
+ color: white;
+ padding: 60px 40px;
+ border-radius: 20px;
+ margin-bottom: 50px;
+ text-align: center;
+ box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+ }
+ .hero h1 {
+ font-size: 3em;
+ font-weight: 800;
+ margin-bottom: 20px;
+ line-height: 1.2;
+ }
+ .hero .subtitle {
+ font-size: 1.4em;
+ margin-bottom: 20px;
+ opacity: 0.95;
+ }
+ .hero p {
+ font-size: 1.2em;
+ margin-bottom: 30px;
+ }
+ /* Hero Form */
+ .hero-form {
+ max-width: 500px;
+ margin: 40px auto 0;
+ }
+ .hero-form .form-group {
+ margin-bottom: 15px;
+ }
+ .hero-form input {
+ width: 100%;
+ padding: 18px 25px;
+ border-radius: 50px;
+ border: none;
+ font-size: 1.1em;
+ font-family: inherit;
+ }
+ .hero-form input:focus {
+ outline: 3px solid #81c784;
+ }
+ .hero-form .submit-button {
+ background: linear-gradient(135deg, #81c784, #66bb6a);
+ color: white;
+ padding: 20px 60px;
+ border-radius: 50px;
+ font-size: 1.4em;
+ font-weight: 700;
+ border: none;
+ cursor: pointer;
+ box-shadow: 0 8px 25px rgba(129, 199, 132, 0.4);
+ transition: all 0.3s;
+ width: 100%;
+ }
+ .hero-form .submit-button:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 12px 35px rgba(129, 199, 132, 0.6);
+ }
+ .hero-form .privacy-note {
+ font-size: 0.9em;
+ margin-top: 15px;
+ opacity: 0.9;
+ }
+ .hero .cta-button {
+ display: inline-block;
+ background: linear-gradient(135deg, #81c784, #66bb6a);
+ color: white;
+ padding: 20px 50px;
+ border-radius: 50px;
+ font-size: 1.4em;
+ font-weight: 700;
+ text-decoration: none;
+ box-shadow: 0 8px 25px rgba(129, 199, 132, 0.4);
+ transition: all 0.3s;
+ margin-top: 20px;
+ }
+ .hero .cta-button:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 12px 35px rgba(129, 199, 132, 0.6);
+ }
+ /* Back to Day 1 Link */
+ .back-to-day1 {
+ background: #e8f5e9;
+ padding: 20px;
+ border-radius: 10px;
+ margin: 20px 0;
+ text-align: center;
+ border: 2px solid #81c784;
+ }
+ .back-to-day1 p {
+ font-size: 1.2em;
+ color: #2c5f7c;
+ margin: 0;
+ }
+ .back-to-day1 a {
+ color: #5d9caa;
+ text-decoration: underline;
+ font-weight: 600;
+ }
+ /* Problem Section */
+ .problem-section {
+ background: white;
+ padding: 60px 40px;
+ border-radius: 20px;
+ margin-bottom: 40px;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+ }
+ .problem-section h2 {
+ font-size: 2.5em;
+ color: #2c5f7c;
+ text-align: center;
+ margin-bottom: 40px;
+ }
+ .problem-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 25px;
+ margin-bottom: 40px;
+ max-width: 1100px;
+ margin-left: auto;
+ margin-right: auto;
+ }
+ .problem-card {
+ background: #f0f8fa;
+ padding: 30px;
+ border-radius: 15px;
+ border-left: 5px solid #7eb3c4;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ }
+ .problem-card h3 {
+ color: #2c5f7c;
+ font-size: 1.4em;
+ margin-bottom: 15px;
+ }
+ .problem-card p {
+ color: #4a4a4a;
+ font-size: 1.1em;
+ line-height: 1.6;
+ }
+ /* Solution Section */
+ .solution-section {
+ background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+ padding: 60px 40px;
+ border-radius: 20px;
+ margin-bottom: 40px;
+ }
+ .solution-section h2 {
+ font-size: 2.5em;
+ color: #2c5f7c;
+ text-align: center;
+ margin-bottom: 20px;
+ }
+ .solution-section .tagline {
+ text-align: center;
+ font-size: 1.3em;
+ color: #5d9caa;
+ margin-bottom: 40px;
+ font-style: italic;
+ }
+ .features-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+ gap: 25px;
+ max-width: 1100px;
+ margin: 0 auto;
+ }
+ .feature-card {
+ background: white;
+ padding: 30px;
+ border-radius: 15px;
+ border-top: 5px solid #81c784;
+ box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+ transition: all 0.3s;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ }
+ .feature-card:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+ }
+ .feature-card .icon {
+ font-size: 3em;
+ margin-bottom: 15px;
+ }
+ .feature-card h3 {
+ color: #2c5f7c;
+ font-size: 1.5em;
+ margin-bottom: 15px;
+ }
+ .feature-card p {
+ color: #4a4a4a;
+ font-size: 1.05em;
+ line-height: 1.7;
+ }
+ /* What's Inside */
+ .whats-inside {
+ background: linear-gradient(135deg, #f0f8fa 0%, #e8f4f8 100%);
+ padding: 60px 40px;
+ border-radius: 20px;
+ margin-bottom: 40px;
+ }
+ .whats-inside h2 {
+ font-size: 2.5em;
+ color: #2c5f7c;
+ text-align: center;
+ margin-bottom: 40px;
+ }
+ .days-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ gap: 20px;
+ max-width: 1000px;
+ margin: 0 auto;
+ }
+ .day-card {
+ background: white;
+ padding: 25px;
+ border-radius: 15px;
+ text-align: center;
+ border: 3px solid #a8d5e2;
+ transition: all 0.3s;
+ }
+ .day-card:hover {
+ transform: translateY(-5px);
+ border-color: #5d9caa;
+ box-shadow: 0 8px 20px rgba(93, 156, 170, 0.2);
+ }
+ .day-card .day-number {
+ font-size: 2em;
+ font-weight: 700;
+ color: #5d9caa;
+ margin-bottom: 10px;
+ }
+ .day-card h3 {
+ color: #2c5f7c;
+ font-size: 1.2em;
+ margin-bottom: 10px;
+ }
+ .day-card p {
+ color: #4a4a4a;
+ font-size: 0.95em;
+ }
+ /* Testimonials */
+ .testimonials {
+ background: white;
+ padding: 60px 40px;
+ border-radius: 20px;
+ margin-bottom: 40px;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+ }
+ .testimonials h2 {
+ font-size: 2.5em;
+ color: #2c5f7c;
+ text-align: center;
+ margin-bottom: 50px;
+ }
+ .testimonial-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 30px;
+ }
+ .testimonial-card {
+ background: #f0f8fa;
+ padding: 30px;
+ border-radius: 15px;
+ border-left: 5px solid #7eb3c4;
+ }
+ .testimonial-text {
+ font-size: 1.1em;
+ color: #2c2c2c;
+ line-height: 1.7;
+ margin-bottom: 20px;
+ font-style: italic;
+ }
+ .testimonial-author {
+ font-weight: 600;
+ color: #5d9caa;
+ }
+ /* Sign Up Form */
+ .signup-section {
+ background: linear-gradient(135deg, #2c5f7c 0%, #5d9caa 100%);
+ color: white;
+ padding: 80px 40px;
+ border-radius: 20px;
+ text-align: center;
+ box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+ margin-bottom: 40px;
+ }
+ .signup-section h2 {
+ font-size: 3em;
+ margin-bottom: 20px;
+ }
+ .signup-section p {
+ font-size: 1.3em;
+ margin-bottom: 40px;
+ opacity: 0.95;
+ }
+ .signup-form {
+ max-width: 500px;
+ margin: 0 auto;
+ }
+ .form-group {
+ margin-bottom: 20px;
+ }
+ .form-group input {
+ width: 100%;
+ padding: 18px 25px;
+ border-radius: 50px;
+ border: none;
+ font-size: 1.1em;
+ font-family: inherit;
+ }
+ .form-group input:focus {
+ outline: 3px solid #81c784;
+ }
+ .submit-button {
+ background: linear-gradient(135deg, #81c784, #66bb6a);
+ color: white;
+ padding: 20px 60px;
+ border-radius: 50px;
+ font-size: 1.5em;
+ font-weight: 700;
+ border: none;
+ cursor: pointer;
+ box-shadow: 0 8px 25px rgba(129, 199, 132, 0.4);
+ transition: all 0.3s;
+ width: 100%;
+ }
+ .submit-button:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 12px 35px rgba(129, 199, 132, 0.6);
+ }
+ .privacy-note {
+ font-size: 0.9em;
+ margin-top: 20px;
+ opacity: 0.8;
+ }
+ /* FAQ */
+ .faq {
+ background: white;
+ padding: 60px 40px;
+ border-radius: 20px;
+ margin-bottom: 40px;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+ }
+ .faq h2 {
+ font-size: 2.5em;
+ color: #2c5f7c;
+ text-align: center;
+ margin-bottom: 40px;
+ }
+ .faq-item {
+ margin-bottom: 30px;
+ padding-bottom: 30px;
+ border-bottom: 1px solid #e0e0e0;
+ }
+ .faq-item:last-child {
+ border-bottom: none;
+ }
+ .faq-question {
+ font-size: 1.3em;
+ color: #2c5f7c;
+ font-weight: 600;
+ margin-bottom: 15px;
+ }
+ .faq-answer {
+ font-size: 1.1em;
+ color: #4a4a4a;
+ line-height: 1.7;
+ }
+ @media (max-width: 768px) {
+ .hero h1 {
+ font-size: 2.2em;
+ }
+ .hero .subtitle {
+ font-size: 1.2em;
+ }
+ .hero .cta-button {
+ font-size: 1.2em;
+ padding: 15px 35px;
+ }
+ .problem-section h2,
+ .solution-section h2,
+ .whats-inside h2,
+ .faq h2 {
+ font-size: 2em;
+ }
+ .signup-section h2 {
+ font-size: 2.2em;
+ }
+ .problem-grid {
+ grid-template-columns: 1fr;
+ }
+ }
+ </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Back to Day 1 -->
-        <div class="back-to-day1">
-            <p>
-                <strong>📖 Haven't read Day 1 yet?</strong> 
-                <a href="index.html">Start with the free chapter here →</a>
-            </p>
-        </div>
+ <div class="container">
+ <!-- Back to Day 1 -->
+ <div class="back-to-day1">
+ <p>
+ <strong>🏠 Haven't read Day 1 yet?</strong>
+ <a href="index.html">Start with the free chapter here →</a>
+ </p>
+ </div>
 
-        <!-- Hero Section with Form -->
-        <div class="hero">
-            <h1>🔦 Get Days 2-5 FREE!</h1>
-            <p class="subtitle">Continue Finn's Lighthouse Mystery Adventure</p>
-            <p>Your child just read Day 1. Now they're hooked on the story. Get the next 4 chapters delivered free to your inbox each morning!</p>
-            
-            <!-- Sign Up Form in Hero -->
-            <form class="hero-form" action="https://app.us17.list-manage.com/subscribe/post?u=83506bdc1b4e9598ba84cf727&id=b222767eb6&f_id=003e0ae3f0" method="post" target="_blank" novalidate>
-                <div class="form-group">
-                    <input type="text" name="FNAME" id="mce-FNAME-hero" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="EMAIL" id="mce-EMAIL-hero" placeholder="Your Email Address" required>
-                </div>
-                <!-- Hidden Mailchimp anti-bot field -->
-                <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                    <input type="text" name="b_83506bdc1b4e9598ba84cf727_b222767eb6" tabindex="-1" value="">
-                </div>
-                <button type="submit" name="subscribe" class="submit-button">Send Me Days 2-5 →</button>
-                <p class="privacy-note">We respect your privacy. Unsubscribe anytime. No spam, ever.</p>
-            </form>
-        </div>
+ <!-- Hero Section with Form -->
+ <div class="hero">
+ <h1>📧 Get Days 2-5 FREE!</h1>
+ <p class="subtitle">Continue Finn's Lighthouse Mystery Adventure</p>
+ <p>Your child just read Day 1. Now they're hooked on the story. Get the next 4 chapters delivered free to your inbox each morning!</p>
+ 
+ <!-- Sign Up Form in Hero -->
+ <form class="hero-form" action="https://app.us17.list-manage.com/subscribe/post?u=83506bdc1b4e9598ba84cf727&id=b222767eb6&f_id=003e0ae3f0" method="post" target="_blank" novalidate>
+ <div class="form-group">
+ <input type="text" name="FNAME" id="mce-FNAME-hero" placeholder="Your Name" required>
+ </div>
+ <div class="form-group">
+ <input type="email" name="EMAIL" id="mce-EMAIL-hero" placeholder="Your Email Address" required>
+ </div>
+ <!-- Hidden field to identify ADHD signups -->
+ <input type="hidden" name="MERGE6" value="ADHD">
+ <!-- Hidden Mailchimp anti-bot field -->
+ <div aria-hidden="true" style="position: absolute; left: -5000px;">
+ <input type="text" name="b_83506bdc1b4e9598ba84cf727_b222767eb6" tabindex="-1" value="">
+ </div>
+ <button type="submit" name="subscribe" class="submit-button">Send Me Days 2-5 →</button>
+ <p class="privacy-note">We respect your privacy. Unsubscribe anytime. No spam, ever.</p>
+ </form>
+ </div>
 
-        <!-- Problem Section -->
-        <div class="problem-section">
-            <h2>Sound Familiar?</h2>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h3>😩 "Reading is boring!"</h3>
-                    <p>Your child resists reading time and would rather be doing anything else.</p>
-                </div>
-                <div class="problem-card">
-                    <h3>📱 Screens Win Every Time</h3>
-                    <p>They can focus on cartoons for hours but can't sit still for a 5-minute story.</p>
-                </div>
-                <div class="problem-card">
-                    <h3>😓 Reading Confidence</h3>
-                    <p>You're worried they're not reading enough at home to keep up with school expectations.</p>
-                </div>
-            </div>
-            <p style="text-align: center; font-size: 1.3em; color: #2c5f7c; font-weight: 600;">But your child just read Day 1... and they want to know what happens next!</p>
-        </div>
+ <!-- Problem Section -->
+ <div class="problem-section">
+ <h2>Sound Familiar?</h2>
+ <div class="problem-grid">
+ <div class="problem-card">
+ <h3>😫 "Reading is boring!"</h3>
+ <p>Your child resists reading time and would rather be doing anything else.</p>
+ </div>
+ <div class="problem-card">
+ <h3>📱 Screens Win Every Time</h3>
+ <p>They can focus on cartoons for hours but can't sit still for a 5-minute story.</p>
+ </div>
+ <div class="problem-card">
+ <h3>📚 Reading Confidence</h3>
+ <p>You're worried they're not reading enough at home to keep up with school expectations.</p>
+ </div>
+ </div>
+ <p style="text-align: center; font-size: 1.3em; color: #2c5f7c; font-weight: 600;">But your child just read Day 1... and they want to know what happens next!</p>
+ </div>
 
-        <!-- Solution Section -->
-        <div class="solution-section">
-            <h2>This Is How Reading Habits Start</h2>
-            <p class="tagline">One mystery. Five days. A lifetime of loving books.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="icon">🎣</div>
-                    <h3>They're Already Hooked</h3>
-                    <p>Day 1 ended on a cliffhanger. They NEED to know who's hiding in the lighthouse. Use that momentum!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">⏰</div>
-                    <h3>Same Time Every Day</h3>
-                    <p>New chapter arrives at 9am for 4 more days. The routine builds the habit. The suspense creates the craving.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">⭐</div>
-                    <h3>Watch Them Succeed</h3>
-                    <p>5-star progress tracker. They can see how close they are to finishing. Every star is a win!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🧠</div>
-                    <h3>Reading Support Built-In</h3>
-                    <p>Click-to-highlight lines, optional timer, dyslexia-friendly spacing. Every child can succeed.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">💯</div>
-                    <h3>Completely Free</h3>
-                    <p>No payment. No credit card. Just great stories that get kids reading.</p>
-                </div>
-            </div>
-        </div>
+ <!-- Solution Section -->
+ <div class="solution-section">
+ <h2>This Is How Reading Habits Start</h2>
+ <p class="tagline">One mystery. Five days. A lifetime of loving books.</p>
+ 
+ <div class="features-grid">
+ <div class="feature-card">
+ <div class="icon">🎣</div>
+ <h3>They're Already Hooked</h3>
+ <p>Day 1 ended on a cliffhanger. They NEED to know who's hiding in the lighthouse. Use that momentum!</p>
+ </div>
+ <div class="feature-card">
+ <div class="icon">⏰</div>
+ <h3>Same Time Every Day</h3>
+ <p>New chapter arrives at 9am for 4 more days. The routine builds the habit. The suspense creates the craving.</p>
+ </div>
+ <div class="feature-card">
+ <div class="icon">⭐</div>
+ <h3>Watch Them Succeed</h3>
+ <p>5-star progress tracker. They can see how close they are to finishing. Every star is a win!</p>
+ </div>
+ <div class="feature-card">
+ <div class="icon">🎯</div>
+ <h3>Reading Support Built-In</h3>
+ <p>Click-to-highlight lines, optional timer, dyslexia-friendly spacing. Every child can succeed.</p>
+ </div>
+ <div class="feature-card">
+ <div class="icon">🆓</div>
+ <h3>Completely Free</h3>
+ <p>No payment. No credit card. Just great stories that get kids reading.</p>
+ </div>
+ </div>
+ </div>
 
-        <!-- What's Inside -->
-        <div class="whats-inside">
-            <h2>What Happens Next?</h2>
-            <div class="days-grid">
-                <div class="day-card">
-                    <div class="day-number">Day 2</div>
-                    <h3>The Stranger</h3>
-                    <p>Finn finds someone hiding in the lighthouse. But who are they?</p>
-                </div>
-                <div class="day-card">
-                    <div class="day-number">Day 3</div>
-                    <h3>The Secret</h3>
-                    <p>The stranger tells Finn an amazing story. But can they trust him?</p>
-                </div>
-                <div class="day-card">
-                    <div class="day-number">Day 4</div>
-                    <h3>The Storm</h3>
-                    <p>A huge storm hits the island. Now they're all in danger!</p>
-                </div>
-                <div class="day-card">
-                    <div class="day-number">Day 5</div>
-                    <h3>The Rescue</h3>
-                    <p>The exciting ending where everything comes together!</p>
-                </div>
-            </div>
-        </div>
+ <!-- What's Inside -->
+ <div class="whats-inside">
+ <h2>What Happens Next?</h2>
+ <div class="days-grid">
+ <div class="day-card">
+ <div class="day-number">Day 2</div>
+ <h3>The Stranger</h3>
+ <p>Finn finds someone hiding in the lighthouse. But who are they?</p>
+ </div>
+ <div class="day-card">
+ <div class="day-number">Day 3</div>
+ <h3>The Secret</h3>
+ <p>The stranger tells Finn an amazing story. But can they trust him?</p>
+ </div>
+ <div class="day-card">
+ <div class="day-number">Day 4</div>
+ <h3>The Storm</h3>
+ <p>A huge storm hits the island. Now they're all in danger!</p>
+ </div>
+ <div class="day-card">
+ <div class="day-number">Day 5</div>
+ <h3>The Rescue</h3>
+ <p>The exciting ending where everything comes together!</p>
+ </div>
+ </div>
+ </div>
 
-        <!-- FAQ -->
-        <div class="faq">
-            <h2>Questions?</h2>
-            
-            <div class="faq-item">
-                <p class="faq-question">❓ Is this really free?</p>
-                <p class="faq-answer">Yes! 100% free. No payment required. No hidden costs. Just great stories delivered to your inbox.</p>
-            </div>
+ <!-- FAQ -->
+ <div class="faq">
+ <h2>Questions?</h2>
+ 
+ <div class="faq-item">
+ <p class="faq-question">💰 Is this really free?</p>
+ <p class="faq-answer">Yes! 100% free. No payment required. No hidden costs. Just great stories delivered to your inbox.</p>
+ </div>
 
-            <div class="faq-item">
-                <p class="faq-question">❓ When do the chapters arrive?</p>
-                <p class="faq-answer">Day 2 arrives tomorrow morning at 9am. Then Day 3 the next day at 9am, and so on. One chapter per day for 4 days.</p>
-            </div>
+ <div class="faq-item">
+ <p class="faq-question">📅 When do the chapters arrive?</p>
+ <p class="faq-answer">Day 2 arrives tomorrow morning at 9am. Then Day 3 the next day at 9am, and so on. One chapter per day for 4 days.</p>
+ </div>
 
-            <div class="faq-item">
-                <p class="faq-question">❓ How long does each chapter take?</p>
-                <p class="faq-answer">About 5 minutes of reading. Perfect for Year 2 attention spans. There's also an optional activity (10-15 minutes) if they want to do more.</p>
-            </div>
+ <div class="faq-item">
+ <p class="faq-question">⏱️ How long does each chapter take?</p>
+ <p class="faq-answer">About 5 minutes of reading. Perfect for Year 2 attention spans. There's also an optional activity (10-15 minutes) if they want to do more.</p>
+ </div>
 
-            <div class="faq-item">
-                <p class="faq-question">❓ What if we miss a day?</p>
-                <p class="faq-answer">No problem! All chapters stay in your email. You can read them anytime and go at your own pace.</p>
-            </div>
+ <div class="faq-item">
+ <p class="faq-question">❓ What if we miss a day?</p>
+ <p class="faq-answer">No problem! All chapters stay in your email. You can read them anytime and go at your own pace.</p>
+ </div>
 
-            <div class="faq-item">
-                <p class="faq-question">❓ Is this right for my struggling reader?</p>
-                <p class="faq-answer">Yes! The text is designed for Year 2 (ages 6-7) with extra spacing, larger text, and reading support features. Many parents say this is the first story their child read independently.</p>
-            </div>
+ <div class="faq-item">
+ <p class="faq-question">📖 Is this right for my struggling reader?</p>
+ <p class="faq-answer">Yes! The text is designed for Year 2 (ages 6-7) with extra spacing, larger text, and reading support features. Many parents say this is the first story their child read independently.</p>
+ </div>
 
-            <div class="faq-item">
-                <p class="faq-question">❓ Can I read it with my child?</p>
-                <p class="faq-answer">Absolutely! Many families read it together. It's a great bedtime story or morning routine activity.</p>
-            </div>
+ <div class="faq-item">
+ <p class="faq-question">👨‍👩‍👧 Can I read it with my child?</p>
+ <p class="faq-answer">Absolutely! Many families read it together. It's a great bedtime story or morning routine activity.</p>
+ </div>
 
-            <div class="faq-item">
-                <p class="faq-question">❓ What happens after Day 5?</p>
-                <p class="faq-answer">After 5 days, your child will have finished a complete story and proven they can read every day. We'll send you tips for keeping the habit going plus info about future adventures!</p>
-            </div>
-        </div>
+ <div class="faq-item">
+ <p class="faq-question">🎉 What happens after Day 5?</p>
+ <p class="faq-answer">After 5 days, your child will have finished a complete story and proven they can read every day. We'll send you tips for keeping the habit going plus info about future adventures!</p>
+ </div>
+ </div>
 
-        <!-- Final CTA -->
-        <div class="signup-section">
-            <h2>Your Child Wants to Know What Happens Next</h2>
-            <p>Don't make them wait. Get Days 2-5 delivered free starting tomorrow morning.</p>
-            
-            <form class="signup-form" action="https://app.us17.list-manage.com/subscribe/post?u=83506bdc1b4e9598ba84cf727&id=b222767eb6&f_id=003e0ae3f0" method="post" target="_blank" novalidate>
-                <div class="form-group">
-                    <input type="text" name="FNAME" id="mce-FNAME-bottom" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="EMAIL" id="mce-EMAIL-bottom" placeholder="Your Email Address" required>
-                </div>
-                <!-- Hidden Mailchimp anti-bot field -->
-                <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                    <input type="text" name="b_83506bdc1b4e9598ba84cf727_b222767eb6" tabindex="-1" value="">
-                </div>
-                <button type="submit" name="subscribe" class="submit-button">Send Me Days 2-5 →</button>
-                <p class="privacy-note">We respect your privacy. Unsubscribe anytime. No spam, ever.</p>
-            </form>
-        </div>
-    </div>
+ <!-- Final CTA -->
+ <div class="signup-section">
+ <h2>Your Child Wants to Know What Happens Next</h2>
+ <p>Don't make them wait. Get Days 2-5 delivered free starting tomorrow morning.</p>
+ 
+ <form class="signup-form" action="https://app.us17.list-manage.com/subscribe/post?u=83506bdc1b4e9598ba84cf727&id=b222767eb6&f_id=003e0ae3f0" method="post" target="_blank" novalidate>
+ <div class="form-group">
+ <input type="text" name="FNAME" id="mce-FNAME-bottom" placeholder="Your Name" required>
+ </div>
+ <div class="form-group">
+ <input type="email" name="EMAIL" id="mce-EMAIL-bottom" placeholder="Your Email Address" required>
+ </div>
+ <!-- Hidden field to identify ADHD signups -->
+ <input type="hidden" name="MERGE6" value="ADHD">
+ <!-- Hidden Mailchimp anti-bot field -->
+ <div aria-hidden="true" style="position: absolute; left: -5000px;">
+ <input type="text" name="b_83506bdc1b4e9598ba84cf727_b222767eb6" tabindex="-1" value="">
+ </div>
+ <button type="submit" name="subscribe" class="submit-button">Send Me Days 2-5 →</button>
+ <p class="privacy-note">We respect your privacy. Unsubscribe anytime. No spam, ever.</p>
+ </form>
+ </div>
+ </div>
 </body>
 </html>
