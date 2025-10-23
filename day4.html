@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4: Mystery at Blackrock Lighthouse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'OpenDyslexic', Arial, sans-serif;
+            background: #e8f4f8;
+            color: #2c2c2c;
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .day-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #81c784, #66bb6a);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(129, 199, 132, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #2c5f7c;
+            text-shadow: none;
+        }
+
+        .reading-time {
+            font-size: 0.95em;
+            color: #5d9caa;
+        }
+
+        /* Timer Controls */
+        .timer-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            border: 2px solid #a8d5e2;
+        }
+
+        .timer-display {
+            font-size: 3em;
+            font-weight: 700;
+            color: #5d9caa;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 3px;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .timer-btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timer-btn.start {
+            background: linear-gradient(135deg, #81c784, #66bb6a);
+            color: white;
+            box-shadow: 0 4px 15px rgba(129, 199, 132, 0.3);
+        }
+
+        .timer-btn.start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(129, 199, 132, 0.4);
+        }
+
+        .timer-btn.stop {
+            background: linear-gradient(135deg, #ef9a9a, #e57373);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 154, 154, 0.3);
+        }
+
+        .timer-btn.stop:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 154, 154, 0.4);
+        }
+
+        .timer-btn.reset {
+            background: linear-gradient(135deg, #a8d5e2, #7eb3c4);
+            color: white;
+            box-shadow: 0 4px 15px rgba(168, 213, 226, 0.3);
+        }
+
+        .timer-btn.reset:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 213, 226, 0.4);
+        }
+
+        .timer-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .timer-label {
+            font-size: 1.1em;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: #ffffff;
+            color: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #c8e4ec;
+        }
+
+        .story-text {
+            font-size: 1.3em;
+            line-height: 2.4;
+            color: #1a1a1a;
+            letter-spacing: 0.5px;
+            word-spacing: 3px;
+        }
+
+        .story-text p {
+            margin-bottom: 35px;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .story-text p:hover {
+            background-color: #f0f8fa;
+            transform: translateX(5px);
+        }
+
+        .story-text p.highlighted {
+            background-color: #c8e4ec;
+            border-left: 5px solid #7eb3c4;
+            padding-left: 15px;
+        }
+
+        .cliffhanger {
+            font-size: 1.4em;
+            color: #5d9caa;
+            font-weight: 700;
+            font-style: italic;
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(168, 213, 226, 0.2);
+            border-radius: 10px;
+            border: 2px solid #a8d5e2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Finish Section */
+        .finish-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            border: 2px solid #a8d5e2;
+        }
+
+        .finish-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #81c784, #66bb6a);
+            color: #fff;
+            padding: 20px 60px;
+            border-radius: 30px;
+            font-size: 1.4em;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 6px 20px rgba(129, 199, 132, 0.3);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .finish-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(129, 199, 132, 0.4);
+            background: linear-gradient(135deg, #66bb6a, #81c784);
+        }
+
+        .finish-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Star Progress */
+        .star-progress {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 0;
+            padding: 30px;
+            background: #f0f8fa;
+            border-radius: 15px;
+            border: 3px solid #a8d5e2;
+        }
+
+        .star {
+            font-size: 3em;
+            color: #d4d4d4;
+            transition: all 0.3s;
+        }
+
+        .star.active {
+            color: #ffd54f;
+            animation: starPulse 0.6s ease-in-out;
+            filter: drop-shadow(0 0 15px #ffd54f);
+        }
+
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .finish-message {
+            margin: 25px 0;
+            font-size: 1.2em;
+            color: #5d9caa;
+            display: none;
+            font-weight: 600;
+        }
+
+        .finish-message.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .next-day-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f8fa;
+            border-radius: 10px;
+            border-left: 4px solid #7eb3c4;
+        }
+
+        .next-day-info h3 {
+            color: #5d9caa;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .next-day-info p {
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        /* Activity Section */
+        .activity-section {
+            margin-top: 50px;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 15px;
+            border: 3px solid #a8d5e2;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .activity-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .activity-header h2 {
+            font-size: 2.2em;
+            color: #5d9caa;
+            margin-bottom: 10px;
+        }
+
+        .activity-time {
+            font-size: 1.1em;
+            color: #81c784;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .activity-content h3 {
+            color: #5d9caa;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #a8d5e2;
+            padding-bottom: 8px;
+        }
+
+        .activity-content p {
+            font-size: 1.1em;
+            line-height: 1.9;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+        }
+
+        .activity-content ul {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .activity-content li {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #2c2c2c;
+            margin-bottom: 10px;
+        }
+
+        .materials-box {
+            background: #f0f8fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #a8d5e2;
+            margin: 20px 0;
+        }
+
+        .challenge-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #81c784;
+            margin: 20px 0;
+        }
+
+        .instruction-step {
+            background: rgba(168, 213, 226, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .instruction-step strong {
+            color: #5d9caa;
+            font-size: 1.15em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .story-section {
+                padding: 30px 20px;
+            }
+
+            .story-text {
+                font-size: 1.05em;
+            }
+
+            .activity-card {
+                padding: 25px 20px;
+            }
+
+            .finish-button {
+                padding: 15px 40px;
+                font-size: 1.1em;
+            }
+
+            .star {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="day-badge">🔦 Day 4 of 5</div>
+            <h1>The Discovery</h1>
+            <p class="reading-time">⏱️ 6 min read</p>
+        </div>
+
+        <!-- Timer Section -->
+        <div class="timer-section">
+            <div class="timer-label">📖 Reading Timer (Optional)</div>
+            <div class="timer-display" id="timerDisplay">00:00</div>
+            <div class="timer-controls">
+                <button class="timer-btn start" id="startBtn">▶️ Start</button>
+                <button class="timer-btn stop" id="stopBtn" disabled>⏸️ Pause</button>
+                <button class="timer-btn reset" id="resetBtn">🔄 Reset</button>
+            </div>
+        </div>
+
+        <!-- Story Section -->
+        <div class="story-section">
+            <div class="story-text">
+                <p>"Please," said Professor Winters. "Let us talk. We are good people."</p>
+
+                <p>Dad looked at Finn. Then at the professor. "OK. Talk."</p>
+
+                <p>They went into the cottage. They sat by the fire.</p>
+
+                <p>"We look for old things," said Professor Winters. "We have been looking for something special. Something on this island."</p>
+
+                <p>"What?" asked Finn.</p>
+
+                <p>"Old books," said Tom. "Very old. From 700 years ago. Monks hid them here."</p>
+
+                <p>"Why?" asked Dad.</p>
+
+                <p>"To keep them safe," said Professor Winters. "The books are very special. They have pictures. Gold pictures. They should be in a museum. So everyone can see them."</p>
+
+                <p>"Why were you in our cellar?" asked Dad.</p>
+
+                <p>"Sorry about that," said Professor Winters. "We used the tunnel. To get to the old monastery. We didn't tell anyone. We were scared. Scared of bad people."</p>
+
+                <p>"Bad people?" said Finn.</p>
+
+                <p>"Yes," said Tom. "A man. Mr. Castellan. He takes old things. He keeps them. He doesn't share. He was looking for us."</p>
+
+                <p>Then they heard something. A boat!</p>
+
+                <p>They ran to the window.</p>
+
+                <p>A big boat was coming!</p>
+
+                <p>"Oh no," said Professor Winters. "It's him. Mr. Castellan."</p>
+
+                <p>"What do we do?" asked Finn.</p>
+
+                <p>"Please help us," said Professor Winters. "We are so close. If we find the books now, we can save them. We can put them in a museum."</p>
+
+                <p>Dad thought. "The tunnel. Can we get there fast?"</p>
+
+                <p>"Yes!" said Tom. "Ten minutes."</p>
+
+                <p>"We go now," said Dad. "Before he gets here."</p>
+
+                <p>They ran to the trapdoor. Dad moved the bookshelf. They opened the door.</p>
+
+                <p>"Finn," said Dad. "You stay here."</p>
+
+                <p>"No!" said Finn. "I want to come!"</p>
+
+                <p>Dad looked at him. "OK. Stay with me."</p>
+
+                <p>They went down. Into the tunnel. Their torches made light.</p>
+
+                <p>They walked fast. The tunnel was long. The walls were wet. It smelled old.</p>
+
+                <p>After ten minutes, they went up some stairs.</p>
+
+                <p>At the top was a room. An old stone room. The monastery!</p>
+
+                <p>"There!" said Professor Winters. She pointed.</p>
+
+                <p>Part of the wall was different. Newer stones.</p>
+
+                <p>"The books are behind those stones," she said.</p>
+
+                <p>Tom got his tools. He moved the stones. One by one.</p>
+
+                <p>Behind them, they heard something. Footsteps!</p>
+
+                <p>"Quick!" said Dad.</p>
+
+                <p>Tom worked faster. The stones came away.</p>
+
+                <p>Behind was a small space. In it was a wooden box.</p>
+
+                <p>Professor Winters reached in. She lifted the box. Her hands shook.</p>
+
+                <p>She opened it.</p>
+
+                <p>Inside were books. Old books wrapped in leather. Six books. They had gold on them. And red. And blue. Pictures of angels and animals.</p>
+
+                <p>"We found them," she said quietly.</p>
+
+                <p>"How nice," said a cold voice.</p>
+
+                <p>They turned around.</p>
+
+                <p>A tall man stood there. He wore a nice coat. Two big men were with him.</p>
+
+                <p>Mr. Castellan.</p>
+
+                <p>"Thank you," he said with a mean smile. "I will take those now."</p>
+            </div>
+
+            <div class="cliffhanger">
+                To Be Continued...
+            </div>
+        </div>
+
+        <!-- Finish Section -->
+        <div class="finish-section">
+            <button class="finish-button" id="finishBtn">I Finished Reading! ✓</button>
+
+            <!-- Star Progress -->
+            <div class="star-progress">
+                <div class="star active" id="star1">⭐</div>
+                <div class="star active" id="star2">⭐</div>
+                <div class="star active" id="star3">⭐</div>
+                <div class="star" id="star4">⭐</div>
+                <div class="star" id="star5">⭐</div>
+            </div>
+            
+            <div class="finish-message" id="finishMessage">
+                <p style="font-size: 1.5em; margin-bottom: 15px;">🎉 Amazing work!</p>
+                <p style="font-size: 1.3em;">You completed Day 4!</p>
+                <p style="margin-top: 10px;">The FINAL chapter arrives tomorrow at 9am...</p>
+            </div>
+
+            <div class="next-day-info">
+                <h3>📅 What Happens Tomorrow?</h3>
+                <p>Will Mr. Castellan take the books? Can Finn and Dad save them? How will this mystery end? Find out in the exciting finale!</p>
+                <p style="margin-top: 15px; color: #7eb3c4; font-weight: 600;">Day 5 (FINALE!) arrives in your inbox tomorrow morning at 9am!</p>
+            </div>
+        </div>
+
+        <!-- Activity Section -->
+        <div class="activity-section">
+            <div class="activity-header">
+                <h2>🎨 Today's Activities</h2>
+                <div class="activity-time">⏱️ Time: 20 minutes</div>
+            </div>
+
+            <div class="activity-content">
+                <div class="challenge-box">
+                    <h3>ACTIVITY 1: Make a Pretty Book Page</h3>
+                    <p><strong>What is a Special Old Book?</strong></p>
+                    <p>Long ago, monks made books. They:</p>
+                    <ul>
+                        <li>Wrote by hand</li>
+                        <li>Drew pictures</li>
+                        <li>Used gold</li>
+                        <li>Made fancy letters</li>
+                        <li>Took a long time!</li>
+                    </ul>
+
+                    <p><strong>What You Need:</strong></p>
+                    <ul>
+                        <li>Paper</li>
+                        <li>Pencils</li>
+                        <li>Colored pencils (yellow, red, blue)</li>
+                        <li>Ruler</li>
+                    </ul>
+
+                    <p><strong>How to Make Your Page:</strong></p>
+                    
+                    <p><strong>Step 1: Draw a border</strong></p>
+                    <ul>
+                        <li>Use ruler</li>
+                        <li>Draw lines around the edge</li>
+                        <li>Leave space in the middle</li>
+                    </ul>
+
+                    <p><strong>Step 2: Make a big letter</strong></p>
+                    <ul>
+                        <li>Choose a letter (your initial!)</li>
+                        <li>Make it BIG</li>
+                        <li>Make it fancy with swirls</li>
+                        <li>Colour it</li>
+                        <li>Use yellow for gold!</li>
+                    </ul>
+
+                    <p><strong>Step 3: Add patterns</strong></p>
+                    <ul>
+                        <li>Dots</li>
+                        <li>Lines</li>
+                        <li>Swirls</li>
+                        <li>In the border</li>
+                    </ul>
+
+                    <p><strong>Step 4: Draw pictures</strong></p>
+                    <ul>
+                        <li>Small animals</li>
+                        <li>Flowers</li>
+                        <li>Birds</li>
+                        <li>In the corners</li>
+                    </ul>
+
+                    <p><strong>Step 5: Colour it</strong></p>
+                    <ul>
+                        <li>Use red</li>
+                        <li>Use blue</li>
+                        <li>Use yellow (gold!)</li>
+                        <li>Make it pretty!</li>
+                    </ul>
+                </div>
+
+                <div class="materials-box">
+                    <h3>ACTIVITY 2: Memory Game</h3>
+                    
+                    <p><strong>What You Need:</strong></p>
+                    <ul>
+                        <li>16 cards (cut from card)</li>
+                        <li>Pencil</li>
+                    </ul>
+
+                    <p><strong>Make the Cards:</strong></p>
+                    <p>Draw these (2 of each):</p>
+                    <ul>
+                        <li>Book</li>
+                        <li>Monk</li>
+                        <li>Lighthouse</li>
+                        <li>Tunnel</li>
+                        <li>Box</li>
+                        <li>Gold coin</li>
+                        <li>Professor</li>
+                        <li>Boat</li>
+                    </ul>
+
+                    <p><strong>How to Play:</strong></p>
+                    <ul>
+                        <li>Mix cards</li>
+                        <li>Put them face down (4 rows of 4)</li>
+                        <li>Take turns</li>
+                        <li>Turn 2 cards over</li>
+                        <li>Match? Keep them!</li>
+                        <li>No match? Turn back</li>
+                        <li>Most pairs wins!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Timer functionality
+        let timerInterval;
+        let seconds = 0;
+        let isRunning = false;
+
+        const timerDisplay = document.getElementById('timerDisplay');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function updateDisplay() {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        startBtn.addEventListener('click', function() {
+            if (!isRunning) {
+                isRunning = true;
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                
+                timerInterval = setInterval(function() {
+                    seconds++;
+                    updateDisplay();
+                }, 1000);
+            }
+        });
+
+        stopBtn.addEventListener('click', function() {
+            if (isRunning) {
+                isRunning = false;
+                clearInterval(timerInterval);
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+            }
+        });
+
+        resetBtn.addEventListener('click', function() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            seconds = 0;
+            updateDisplay();
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        });
+
+        // Finish button functionality
+        const finishBtn = document.getElementById('finishBtn');
+        const finishMessage = document.getElementById('finishMessage');
+        const star4 = document.getElementById('star4');
+
+        finishBtn.addEventListener('click', function() {
+            // Stop timer when finished
+            if (isRunning) {
+                clearInterval(timerInterval);
+                isRunning = false;
+                stopBtn.disabled = true;
+            }
+
+            // Stars 1, 2, and 3 already active, activate star 4
+            star4.classList.add('active');
+            
+            // Show completion message
+            finishMessage.classList.add('show');
+            
+            // Hide finish button
+            finishBtn.style.display = 'none';
+            
+            // Save progress with reading time
+            const progress = {
+                day4Complete: true,
+                completedDate: new Date().toISOString(),
+                readingTime: seconds
+            };
+            localStorage.setItem('lighthouseProgressDay4', JSON.stringify(progress));
+            
+            // Smooth scroll to show the star animation
+            star4.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Check if already completed (on page load)
+        window.addEventListener('DOMContentLoaded', function() {
+            // ALWAYS reset on page load for testing
+            localStorage.removeItem('lighthouseProgressDay4');
+
+            // Line highlighting functionality
+            const paragraphs = document.querySelectorAll('.story-text p');
+            
+            paragraphs.forEach((paragraph, index) => {
+                paragraph.addEventListener('click', function() {
+                    // Remove highlight from all paragraphs
+                    paragraphs.forEach(p => p.classList.remove('highlighted'));
+                    
+                    // Add highlight to clicked paragraph
+                    this.classList.add('highlighted');
+                    
+                    // Smooth scroll to keep highlighted line visible
+                    this.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                });
+            });
+
+            // Optional: Arrow key navigation
+            let currentHighlightIndex = -1;
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    
+                    if (e.key === 'ArrowDown' && currentHighlightIndex < paragraphs.length - 1) {
+                        currentHighlightIndex++;
+                    } else if (e.key === 'ArrowUp' && currentHighlightIndex > 0) {
+                        currentHighlightIndex--;
+                    }
+                    
+                    // Remove all highlights
+                    paragraphs.forEach(p => p.classList.remove('highlighted'));
+                    
+                    // Add highlight to current paragraph
+                    if (currentHighlightIndex >= 0 && currentHighlightIndex < paragraphs.length) {
+                        paragraphs[currentHighlightIndex].classList.add('highlighted');
+                        paragraphs[currentHighlightIndex].scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
